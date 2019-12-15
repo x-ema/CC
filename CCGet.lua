@@ -1,8 +1,4 @@
-local func = io.read()
-if func == "get" then
-	local url = io.read()
-	local name = io.read()
-	FILE = fs.open(name,"w")
-	FILE.write(http.get("https://raw.githubusercontent.com/x-ema/CC/master/" .. url).readAll())
-	FILE.close()
-end
+local filename = io.read()
+local toname = io.read()
+f = fs.open(toname,"w")
+f.write(http.get("https://raw.githubusercontent.com/x-ema/CC/master/" .. filename).readAll())
