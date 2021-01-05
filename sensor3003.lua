@@ -1,6 +1,8 @@
 args = {...}
 if not args[1] or not args[2] or not args[3] then error('usage sensor3003.lua <x> <y> <z>') end
-sen = peripheral.wrap('back')
+sen = peripheral.wrap('top')
+glass = peripheral.wrap('back')
+scale = 1
 
 function getInventory(name)
   print(textutils.serialize(sen.getPlayerData(name).inventory))
@@ -40,12 +42,25 @@ function getPlayerData(extra_players)
   end
   return infolist
 end
+
+function writeToScreen(data)
+  maxwidth = 0
+  for _,info in pairs(data) do
+    if glass.getStringWidth(data) > maxwidth then maxwidth = glass.getStringWidth(data) end
+  end
+  glass.addBox(1,1,maxwidth,#data*5,1,0.5)
+  for _,info in pairs(data) do
+    glass.addText(1,_*5,info,0)
+  end
+end
     
 while true do
   x = getPlayerData({'Sleetyy'})
   term.clear()
+  writeable_data = {}
   for _,z in pairs(x) do
-        print('Username: '..z.username..' @ X:'..z.position.x+args[1]..'Y:'..z.position.y+args[2]..'Z:'..z.position.z+args[3])
+    str = 'Username: '..z.username..' --- X:'..z.position.x+args[1]..' Y:'..z.position.y+args[2]..' Z:'..z.position.z+args[3]
+    writeable_data[#writeable_data+1] = str
   end
   sleep(1)
 end
