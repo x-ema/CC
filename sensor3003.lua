@@ -28,12 +28,12 @@ function findAll(str,pattern,repl)
 end
 
 --[[list players on dynmap, players not on dynmap will have to be searched manually]]--
-  function getPlayerData(extra_players)
+function getPlayerData(extra_players)
   infolist = {}
   local dynmap_url = 'http://tekkit.craftersland.net:25800/up/world/world/'
   local dynmap_data = http.get(dynmap_url).readAll()
   local names = findAll(dynmap_data,'"name":"%a+"',{'"','name:'})
-  for _,name in pairs(extra_players) do names[#names+1] = name
+  for _,name in pairs(extra_players) do names[#names+1] = name end
   for _,name in pairs(names) do
     local playerdata = sen.getPlayerData(name)
     if playerdata ~= nil then infolist[#infolist+1] = playerdata end
