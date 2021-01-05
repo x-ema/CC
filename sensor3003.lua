@@ -5,13 +5,19 @@ function getInventory(name)
 end
 
 --[[add regex's ability to find all matches in a string to lua]]--
-function findAll(str,pattern)
-  str = str:gsub('\n','')
+function findAll(str,pattern,repl)
+  result = {}
   search_start = 1
+  str = str:gsub('\n','')
   while true do
     start,last = str:find(pattern,search_start)
     if start ~= nil and last ~= nil then
-      print(str:sub(start,last))
+      result[#result+1] = str:sub(start,last))
+      if repl then
+        for _ in pairs(repl) do
+          result[#result] = result[#result]:gsub(_,'')
+        end
+      end
       search_start = last
     else
       break
