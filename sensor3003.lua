@@ -1,3 +1,5 @@
+args = {...}
+if not args[1] or not args[2] or not args[3] then error('usage sensor3003.lua <x> <y> <z>')
 sen = peripheral.wrap('back')
 
 function getInventory(name)
@@ -25,11 +27,25 @@ function findAll(str,pattern,repl)
   end
 end
 
-function getPlayers()
+--[[list players on dynmap, players not on dynmap will have to be searched manually]]--
+  function getPlayerData(extra_players)
+  infolist = {}
   local dynmap_url = 'http://tekkit.craftersland.net:25800/up/world/world/'
   local dynmap_data = http.get(dynmap_url).readAll()
-  local names = findAll(dynmap_data,'"name":"%a+"')
-  for x,y in pairs(names) do print(x) print(y) end
+  local names = findAll(dynmap_data,'"name":"%a+"',{'"','name:'})
+  for _,name in pairs(extra_players) do names[#names+1] = name
+  for _,name in pairs(names) do
+    local playerdata = sen.getPlayerData(name)
+    if playerdata ~= nil then infolist[#infolist+1] = playerdata end
+  end
+  return infolist
 end
-
-getPlayers()
+    
+while true do
+  x = getPlayerData({'Sleetyy'})
+  term.clear()
+  for _,z in pairs(x) do
+        print('Username: '..z.username..' @ X:'..z.position.x+args[1]..'Y:'..z.position.y+args[2]..'Z:'..z.position.z+args[3])
+  end
+  sleep(1)
+end
