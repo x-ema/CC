@@ -12,10 +12,10 @@ function findAll(str,pattern,repl)
   while true do
     start,last = str:find(pattern,search_start)
     if start ~= nil and last ~= nil then
-      result[#result+1] = str:sub(start,last))
+      result[#result+1] = str:sub(start,last)
       if repl then
-        for _ in pairs(repl) do
-          result[#result] = result[#result]:gsub(_,'')
+        for _,filt in pairs(repl) do
+          result[#result] = result[#result]:gsub(filt,'')
         end
       end
       search_start = last
