@@ -20,7 +20,7 @@ function findAll(str,pattern,repl)
       end
       search_start = last
     else
-      break
+      return result
     end
   end
 end
@@ -29,6 +29,7 @@ function getPlayers()
   local dynmap_url = 'http://tekkit.craftersland.net:25800/up/world/world/'
   local dynmap_data = http.get(dynmap_url).readAll()
   local names = findAll(dynmap_data,'"name":"%a+"')
+  for x,y in pairs(names) do print(x) print(y) end
 end
 
 getPlayers()
