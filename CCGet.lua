@@ -1,3 +1,7 @@
+local cli_args = {...}
+if cli_args[1] == 'get' then
+  cli_args[2]
+end
 local filename = io.read()
 local toname = io.read()
 f = fs.open(toname,"w")
