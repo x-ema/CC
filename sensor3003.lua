@@ -59,7 +59,7 @@ while true do
   term.clear()
   writeable_data = {}
   for _,z in pairs(x) do
-    str = z.username..' --- X:'..z.position.x+args[1]..' Y:'..z.position.y+args[2]..' Z:'..z.position.z+args[3]
+    str = z.username..' --- X:'..math.ceil(z.position.x+args[1])..' Y:'..math.ceil(z.position.y+args[2])..' Z:'..math.ceil(z.position.z+args[3])
     writeable_data[#writeable_data+1] = str
   end
   glass.clear()
