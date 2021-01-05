@@ -1,4 +1,3 @@
-os.loadAPI('json')
 sen = peripheral.wrap('back')
 
 function getInventory(name)
