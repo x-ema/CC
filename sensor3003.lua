@@ -62,5 +62,7 @@ while true do
     str = 'Username: '..z.username..' --- X:'..z.position.x+args[1]..' Y:'..z.position.y+args[2]..' Z:'..z.position.z+args[3]
     writeable_data[#writeable_data+1] = str
   end
+  glass.clear()
+  writeToScreen(writeable_data)
   sleep(1)
 end
