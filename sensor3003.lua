@@ -48,9 +48,9 @@ function writeToScreen(data)
   for _,info in pairs(data) do
     if glass.getStringWidth(data) > maxwidth then maxwidth = glass.getStringWidth(data) end
   end
-  glass.addBox(1,1,maxwidth,#data*5,1,0.5)
+  glass.addBox(1,1,maxwidth,#data*10 + 10,1,0.5)
   for _,info in pairs(data) do
-    glass.addText(1,_*5,info,0)
+    glass.addText(5,_*10,info,0)
   end
 end
     
@@ -59,7 +59,7 @@ while true do
   term.clear()
   writeable_data = {}
   for _,z in pairs(x) do
-    str = 'Username: '..z.username..' --- X:'..z.position.x+args[1]..' Y:'..z.position.y+args[2]..' Z:'..z.position.z+args[3]
+    str = z.username..' --- X:'..z.position.x+args[1]..' Y:'..z.position.y+args[2]..' Z:'..z.position.z+args[3]
     writeable_data[#writeable_data+1] = str
   end
   glass.clear()
