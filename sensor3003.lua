@@ -1,5 +1,5 @@
 args = {...}
-if not args[1] or not args[2] or not args[3] then error('usage sensor3003.lua <x> <y> <z>')
+if not args[1] or not args[2] or not args[3] then error('usage sensor3003.lua <x> <y> <z>') end
 sen = peripheral.wrap('back')
 
 function getInventory(name)
