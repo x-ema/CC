@@ -48,6 +48,6 @@ end
 
 while true do
   _,msg,user = os.pullEvent('chat_command')
-  if msg:find('invsee') then drawInv(getInv(msg:gsub('invsee '))) end
+  if msg:find('invsee') then drawInv(getInv(msg:gsub('invsee ',''))) end
   if msg == 'clear' then glass.clear() end
 end
