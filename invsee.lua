@@ -31,3 +31,5 @@ function drawInv(inventory)
     liney = liney + 1
   end
 end
+
+drawinv(getInv('Sleetyy'))
