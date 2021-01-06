@@ -16,7 +16,7 @@ function drawInv(inventory)
   inv_margin = 20
   inv_bg = 0x404040
   inv_fg = 0x9e9e9e
-  for i = 9,36 do --[[draw main body of inventory]]--
+  for i = 10,36 do --[[draw main body of inventory]]--
     glass.addBox(linex * inv_margin,liney * inv_margin,inv_margin,inv_margin,inv_bg,1)
     glass.addBox(linex * inv_margin,liney * inv_margin,inv_margin-2,inv_margin-2,inv_fg,1)
     glass.addIcon(linex * inv_margin,liney * inv_margin,inventory[i].id,inventory[i].dmg)
