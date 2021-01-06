@@ -1,2 +1,0 @@
-glass = peripheral.wrap('top')
-
