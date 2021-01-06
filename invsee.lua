@@ -11,7 +11,7 @@ slot 1-9 = hotbar
 last 4 slots = armor (40,39,38,37)?
 ]]--
 function drawInv(inventory)
-  liney = 4
+  liney = 5
   linex = 1
   inv_margin = 20
   for i = 9,36 do --[[draw main body of inventory]]--
