@@ -3,7 +3,10 @@ sen = peripheral.wrap('top')
 --glass.addIcon = 16x16
 --glass.addIcon(x,y,id,meta)
 
-function getInv(player) return sen.getPlayerData(player).inventory end
+function getInv(player)
+  inventory = sen.getPlayerData(player).inventory
+  if inventory ~= nil then return inventory else return false end
+end
 
 --[[
 inv scructure
@@ -11,6 +14,7 @@ slot 1-9 = hotbar
 last 4 slots = armor (40,39,38,37)?
 ]]--
 function drawInv(inventory)
+  if inventory == false then print('Player does not exist/is not online') end
   liney = 5
   linex = 1
   inv_margin = 20
