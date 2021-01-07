@@ -16,19 +16,19 @@ function invsee(sen,player)
   row = 5
   column = 1
   for i = 10,36 do --[[Draw main inv]]--
-    drawItem()
+    drawItem(row,column,inventory[i].id,inventory[i].dmg)
     if row == 9 then row = 1 column = column + 1 else row = row + 1 end
   end
   row = 8
   column = 1
   for i = 1,9 do --[[Draw hot bar]]--
-    drawItem()
+    drawItem(row,column,inventory[i].id,inventory[i].dmg)
     row = row + 1
   end
   row = 1
   column = 1
   for i = 37,40 do --[[Draw armor slots]]--
-    drawItem()
+    drawItem(row,column,inventory[i].id,inventory[i].dmg)
     column = column + 1
   end
 end
