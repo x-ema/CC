@@ -31,7 +31,6 @@ local map = {
     while true do
       start,last = users_raw:find('"name":"%a+"',search_start)--"name":"Hitman335"
       if start ~= nil and last ~= nil then
-        self:addPlayer(users_raw:sub(start + 8,last - 1))
         self.players[#self.players + 1] = peripherals.sen.getPlayerData(users_raw:sub(start + 8,last - 1))
       else 
         break
