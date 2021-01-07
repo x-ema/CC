@@ -23,19 +23,16 @@ local map = {
   url = 'http://tekkit.craftersland.net:25800/up/world/world/',
   players={},
  
-  addPlayer = function (self,name)
-    self.players[name] = peripherals.sen.getPlayerData(name)
-  end,
- 
   getPlayerData = function (self)
     users_raw = http.get(self.url)
     users_raw = users_raw.readAll()
-    --users_raw = (http.get(self.url).readAll())):gsub('\n','')
+    users_raw = users_raw:gsub('\n','')
     search_start = 1
     while true do
       start,last = users_raw:find('"name":"%a+"',search_start)--"name":"Hitman335"
       if start ~= nil and last ~= nil then
         self:addPlayer(users_raw:sub(start + 8,last - 1))
+        self.players[#self.players + 1] = peripherals.sen.getPlayerData(users_raw:sub(start + 8,last - 1))
       else 
         break
       end
@@ -59,7 +56,7 @@ map:draw()
 
 
 
-
+t
 
 
 
