@@ -22,12 +22,15 @@ local map = {
   opacity = 0.5,
   url = 'http://tekkit.craftersland.net:25800/up/world/world/',
   players={},
+ 
   addPlayer = function (self,name)
     self.players[name] = peripherals.sen.getPlayerData(name)
   end,
+ 
   getPlayerData = function (self)
-    local users_raw = http.get(self.url).readAll())
-    users_raw = users_raw:gsub('\n','')
+    users_raw = http.get(self.url)
+    users_raw = users_raw.readAll()
+    --users_raw = (http.get(self.url).readAll())):gsub('\n','')
     search_start = 1
     while true do
       start,last = users_raw:find('"name":"%a+"',search_start)--"name":"Hitman335"
@@ -39,10 +42,11 @@ local map = {
       search_start = last
     end
   end,
+
   draw = function (self)
-    peripherals.glass.addBox(x_pos,y_pos,x_size * scale,y_size * scale,bg,opacity) --[[draw map bounding box]]--
-    for i = 1,#players do
-      peripherals.glass.addBox(x_pos + math.ceil(players[i].position.x * scale),y_pos + math.ceil(players[i].position.y * scale),1,1,fg,opacity)
+    peripherals.glass.addBox(self.x_pos,self.y_pos,self.x_size * self.scale,self.y_size * self.scale,self.bg,self.opacity) --[[draw map bounding box]]--
+    for i = 1,#self.players do
+      peripherals.glass.addBox(self.x_pos + math.ceil(self.players[i].position.x * self.scale),self.y_pos + math.ceil(self.players[i].position.y * self.scale),1,1,self.fg,self.opacity)
     end
   end
 }
