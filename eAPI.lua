@@ -144,7 +144,7 @@ end
 ]]--
 
 function mount(peripheral_name)
- if peripheral_name == 'help' then error('usage "peripheral_name":mount(). ex pname = peripheral.wrap("monitor":mount()))
+ if peripheral_name == 'help' then error('usage "peripheral_name":mount(). ex pname = peripheral.wrap("monitor":mount())')
  for _,perip in pairs(peripheral.getNames()) do
    if peripheral.getType(perip) == peripheral_name then
     return perip
