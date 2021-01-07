@@ -43,7 +43,7 @@ local map = {
   draw = function (self)
     peripherals.glass.addBox(self.x_pos,self.y_pos,self.x_size * self.scale,self.y_size * self.scale,self.bg,self.opacity) --[[draw map bounding box]]--
     for i = 1,#self.players do
-      peripherals.glass.addBox(self.x_pos + math.ceil(self.players[i].position.x * self.scale),self.y_pos + math.ceil(self.players[i].position.y * self.scale),1,1,self.fg,self.opacity)
+      peripherals.glass.addBox(self.x_pos + math.ceil((self.players[i].position.x + (self.x_size / 2)) * self.scale),self.y_pos+ math.ceil((self.players[i].position.y + (self.y_size / 2)) * self.scale),1,1,self.fg,self.opacity)
     end
   end
 }
@@ -55,48 +55,3 @@ map:draw()
 
 
 
-
-t
-
-
-
-
-
-
---[[
-function findAll(str,pattern,repl)
-  result = {}
-  search_start = 1
-  str = str:gsub('\n','')
-  while true do
-    start,last = str:find(pattern,search_start)
-    if start ~= nil and last ~= nil then
-      result[#result+1] = str:sub(start,last)
-      if repl then
-        for _,filt in pairs(repl) do
-          result[#result] = result[#result]:gsub(filt,'')
-        end
-      end
-      search_start = last
-    else
-      return result
-    end
-  end
-end
-
-]]--
---[[list players on dynmap, players not on dynmap will have to be searched manually]]--
---[[
-function getPlayerData(extra_players)
-  infolist = {}
-  local dynmap_url = 
-  local dynmap_data = http.get(dynmap_url).readAll()
-  local names = findAll(dynmap_data,'"name":"%a+"',{'"','name:'})
-  for _,name in pairs(extra_players) do names[#names+1] = name end
-  for _,name in pairs(names) do
-    local playerdata = sen.getPlayerData(name)
-    if playerdata ~= nil then infolist[#infolist+1] = playerdata end
-  end
-  return infolist
-end
-]]--
