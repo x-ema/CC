@@ -42,7 +42,11 @@ local map = {
   draw = function (self)
     peripherals.glass.addBox(self.x_pos,self.y_pos,self.x_size * self.scale,self.y_size * self.scale,self.bg,self.opacity) --[[draw map bounding box]]--
     for i = 1,#self.players do
-      peripherals.glass.addBox(self.x_pos + math.ceil((self.players[i].position.x + (self.x_size / 2)) * self.scale),self.y_pos+ math.ceil((self.players[i].position.y + (self.y_size / 2)) * self.scale),1,1,self.fg,self.opacity)
+      player_x_pos = (self.players[i].position.x * self.scale) + (self.x_size * scale) + self.x_pos
+      player_y_pos = (self.players[i].position.y * self.scale) + (self.y_size * scale) + self.y_pos
+      print(self.players[i].username..' X:'..player_x_pos..' Y:'..player_y_pos)
+      --peripherals.glass.addBox(self.x_pos + math.ceil((self.players[i].position.x + (self.x_size / 2)) * self.scale),self.y_pos+ math.ceil((self.players[i].position.y + (self.y_size / 2)) * self.scale),1,1,self.fg,self.opacity)
+      peripherals.glass.addBox(player_x_pos,player_y_pos,1,1,self.fg,self.opacity)
     end
   end
 }
@@ -52,5 +56,15 @@ peripherals:mount('openperipheral_sensor','sen')--[[mount sensor]]--
 map:getPlayerData()
 map:draw()
 
+
+--[[
+drawn map size = 120x120
+scaler is 1/100th size
+'small coords' would be 
+
+-59, -36 + size of map to make it not negative
+61, 84
+ex coords -4873 -3596
+]]--
 
 
