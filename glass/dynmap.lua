@@ -1,8 +1,12 @@
 local commands = {
+  init = function (self)
+    peripherals:mount('openperipheral_glassesbridge','glass')
+    peripherals:mount('openperipheral_sensor','sen')
+  end,
   highlight = {
     cmd = 'highlight'
     func = function (self)
-      
+      print('hello world')
     end
   }
 }
@@ -27,6 +31,7 @@ local map = {
   y_size = 12000,--drawn map is 120x120
   x_pos = 10,
   y_pos = 10,
+  margin = 10,
   scale = 0.01,
   bg = 0x000000,
   fg = 0xFFFFFF,
@@ -64,11 +69,18 @@ local map = {
     for i = 1,#self.players do
       peripherals.glass.addBox((self.players[i].position.x * -1 * self.scale) + ((self.x_size * self.scale) / 2) + self.x_pos,(self.players[i].position.z * -1 * self.scale) + ((self.y_size * self.scale) / 2) + self.y_pos,1,1,self.fg,self.opacity)
     end
+  end,
+  
+  track = function (self,username)
+    player = peripherals.sen.getPlayerData(username)
+    display_str = player.username..' X:'..player.position.x + self.x_coord..' Y:'..player.position.y + self.y_coord..' Z:'..player.position.z + self.z_coord
+    peripherals.glass.addBox(self.scale * self.x_size + self.margin,self.scale * self.ysize + self.margin,getStringWidth(display_str) + self.margin,10,self.fg)
   end
 }
 
-peripherals:mount('openperipheral_glassesbridge','glass') --[[mount glasses bridge]]--
-peripherals:mount('openperipheral_sensor','sen')--[[mount sensor]]--
-map:updateCoords(4872,67,3592)
-map:getPlayerData()
-map:draw()
+while true do
+  map:updateCoords(4872,67,3592)
+  map:getPlayerData()
+  map:draw()
+  map:track('Sleetyy')
+end
