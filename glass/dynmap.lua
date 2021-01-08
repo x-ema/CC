@@ -61,7 +61,8 @@ local map = {
   track = function (self,username)
     player = peripherals.sen.getPlayerData(username)
     display_str = player.username..' X:'..player.position.x + self.x_coord..' Y:'..player.position.y + self.y_coord..' Z:'..player.position.z + self.z_coord
-    peripherals.glass.addBox(self.scale * self.x_size + self.margin,self.scale * self.y_size + self.margin,peripherals.glass.getStringWidth(display_str) + self.margin,10,self.fg)
+    peripherals.glass.addBox(self.scale * self.x_size + self.margin,self.scale * self.y_size + self.margin,peripherals.glass.getStringWidth(display_str) + self.margin,10,self.fg,self.opacity)
+    peripherals.glass.addText(self.scale * self.x_size + self.margin,self.scale * self.y_size + self.margin,display_str,self.fg)
   end
 }
 --[[GLASS PLUGIN STANDARD DEFINITIONS]]--
