@@ -1,16 +1,3 @@
-local commands = {
-  init = function (self)
-    peripherals:mount('openperipheral_glassesbridge','glass')
-    peripherals:mount('openperipheral_sensor','sen')
-  end,
-  highlight = {
-    cmd = 'highlight'
-    func = function (self)
-      print('hello world')
-    end
-  }
-}
-
 local peripherals = {
  --[[usage peripherals:mount(<periperal_type>,<var_name>)]]--
  --[[ex, peripherals:mount('monitor','mon')]]--
@@ -77,7 +64,20 @@ local map = {
     peripherals.glass.addBox(self.scale * self.x_size + self.margin,self.scale * self.ysize + self.margin,getStringWidth(display_str) + self.margin,10,self.fg)
   end
 }
-
+--[[GLASS PLUGIN STANDARD DEFINITIONS]]--
+local commands = {
+  init = function (self)
+    peripherals:mount('openperipheral_glassesbridge','glass')
+    peripherals:mount('openperipheral_sensor','sen')
+  end,
+  highlight = {
+    cmd = 'highlight',
+    func = function (self)
+      print('hello world')
+    end
+  }
+}
+--[[GLASS PLUGIN STANDARD DEFINITIONS]]--
 while true do
   commands:init()
   map:updateCoords(4872,67,3592)
