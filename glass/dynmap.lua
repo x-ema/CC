@@ -79,6 +79,7 @@ local map = {
 }
 
 while true do
+  commands:init()
   map:updateCoords(4872,67,3592)
   map:getPlayerData()
   map:draw()
