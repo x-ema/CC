@@ -29,7 +29,7 @@ local map = {
     self.x_coord = x
     self.y_coord = y
     self.z_coord = z
-  end
+  end,
   getPlayerData = function (self)
     self.players = {}
     users_raw = http.get(self.url)
@@ -53,7 +53,7 @@ local map = {
   draw = function (self)
     peripherals.glass.addBox(self.x_pos,self.y_pos,self.x_size * self.scale,self.y_size * self.scale,self.bg,self.opacity) --[[draw map bounding box]]--
     for i = 1,#self.players do
-      peripherals.glass.addBox((self.players[i].position.x * self.scale) + ((self.x_size * self.scale) / 2) + self.x_pos,(self.players[i].position.z * self.scale) + ((self.y_size * self.scale) / 2) + self.y_pos,1,1,self.fg,self.opacity)
+      peripherals.glass.addBox((self.players[i].position.x * -1 * self.scale) + ((self.x_size * self.scale) / 2) + self.x_pos,(self.players[i].position.z * -1 * self.scale) + ((self.y_size * self.scale) / 2) + self.y_pos,1,1,self.fg,self.opacity)
     end
   end
 }
