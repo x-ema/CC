@@ -83,6 +83,7 @@ while true do
   commands:init()
   map:updateCoords(4872,67,3592)
   map:getPlayerData()
+  peripherals.glass.clear()
   map:draw()
   map:track('Sleetyy')
 end
