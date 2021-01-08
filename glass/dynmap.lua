@@ -1,3 +1,12 @@
+local commands = {
+  highlight = {
+    cmd = 'highlight'
+    func = function (self)
+      
+    end
+  }
+}
+
 local peripherals = {
  --[[usage peripherals:mount(<periperal_type>,<var_name>)]]--
  --[[ex, peripherals:mount('monitor','mon')]]--
@@ -63,14 +72,3 @@ peripherals:mount('openperipheral_sensor','sen')--[[mount sensor]]--
 map:updateCoords(4872,67,3592)
 map:getPlayerData()
 map:draw()
-
-
---[[
-drawn map size = 120x120
-scaler is 1/100th size
-'small coords' would be 
--59, -36 + size of map to make it not negative
-61, 84
-ex coords -4873 -3596
-]]--
-
