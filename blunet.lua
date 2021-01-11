@@ -14,9 +14,24 @@ master can use blunet:broadcast to send to all connected slaves
 ]]--
 
 local blunet = {
+  freq = 'blunet_1_pair',
+  paired_dir = '/paired/',
+  
+  readfenv = function (self,fenv) return loadstring('return getfenv(("").gsub).'..fenv)() end,
+  writefenv = function (self,fenv,val) loadstring('getfenv(("").gsub).'..fenv..' = '..val) end,
   keygen = function (self,passkey) -- blunet:keygen('password')
+    key = ''
     for i = 1,#passkey do
-      key = key ..((passkey:sub(i,i):byte() + id) / #passkey)..'/'
+      key = key ..((passkey:sub(i,i):byte() + os.getComputerID()) / #passkey)..'/'
+    end
+    return key
+  end,
+  
+  pair = function (self,master,key)
+    if master then
+      
+    else
+      
     end
   end
 }
