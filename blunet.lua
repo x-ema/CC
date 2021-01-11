@@ -14,17 +14,21 @@ master can use blunet:broadcast to send to all connected slaves
 ]]--
 
 local blunet = {
-  key = 
+  keygen = function (self,passkey) -- blunet:keygen('password')
+    for i = 1,#passkey do
+      key = key ..((passkey:sub(i,i):byte() + id) / #passkey)..'/'
+    end
+  end
 }
 
 
+blunet:keygen('password')
 
 
 
 
 
-
-
+--[[
 blunet = {
   pair = function (self,master)
     if master then
@@ -36,3 +40,4 @@ blunet = {
     end
   end
 }
+]]--
