@@ -19,8 +19,10 @@ local blunet = {
   
   readfenv = function (self,fenv) return loadstring('return getfenv(("").gsub).'..fenv)() end,
   writefenv = function (self,fenv,val) loadstring('getfenv(("").gsub).'..fenv..' = "'..val..'"')() end,
-  appendfenv = function (self,table,val) loadstring('getfenv(("").gsub).'..pair_freq..'[#getfenv(("").gsub).'..pair_freq..' + 1] = "'..val..'"')() end,
-
+  appendfenv = function (self,table,val) loadstring('getfenv(("").gsub).'..table..'[#getfenv(("").gsub).'..table..' + 1] = "'..val..'"')() end,
+  
+  setpairfreq = function (self,freq) pair_freq = freq end, --use this to creare unique pair freq to avoid confusing pcs when pairing
+  
   keygen = function (self,passkey) -- blunet:keygen('password')
     key = ''
     for i = 1,#passkey do
@@ -32,17 +34,34 @@ local blunet = {
   pair = function (self,master,key,time)
     if master then
       if not time then time = 5 end
-      blunet:writefenv(pair_freq,{..key..})
-      blunet:writefenv('',) --write to master blunet pair table makes a table that contains the key
-                         --slaves will grab the master key and append their key to the table master will then grab the slave keys and save them
+      blunet:writefenv(pair_freq,'{'..key..'}')
+      --master writes to the blunet pair table (slight limit, can only have 1 pairing process at one time on the server, can be remidied by using unique pair_freq)
+      --slave grabs master key and append their own to the pair table.
+      --master grabs slave keys and saves them in /paired/
+      --slaves will save master key in /paired/master.key
       io.write('blunet: pairing')
       for i=1,time do io.write('.') end io.write('\n')
-      print('blunet: paired with x devices')
-      
-      
+      paired = blunet:readfenv(pair_freq)
+      print('blunet: paired with '..tostring(#paired - 1)..' devices')
+      for i = 1,#paired - 1 do
+        --save paired into file
+      end
     else
-      
+      pairing = blunet:readfenv(pair_freq)
+      if pairing then
+        --save the first value of pairing as master key
+        blunet:appendfenv(pair_freq,key)
+        print('blunet: paired with master')
+      else
+        print('blunet: no blunet masters detected on freq "'..pair_freq..'"')
+      end
     end
+  end,
+  broacast = function (self,key,msg)
+    
+  end,
+  send = function (self,key,slave_key,msg)
+    
   end
 }
 
