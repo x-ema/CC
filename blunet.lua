@@ -14,7 +14,7 @@ master can use blunet:broadcast to send to all connected slaves
 ]]--
 
 local blunet = {
-  freq = 'blunet_pair',
+  pair_freq = 'blunet_pair',
   paired_dir = '/paired/',
   
   readfenv = function (self,fenv) return loadstring('return getfenv(("").gsub).'..fenv)() end,
@@ -32,6 +32,7 @@ local blunet = {
   pair = function (self,master,key,time)
     if master then
       if not time then time = 5 end
+      blunet:writefenv(pair_freq,{..key..})
       blunet:writefenv('',) --write to master blunet pair table makes a table that contains the key
                          --slaves will grab the master key and append their key to the table master will then grab the slave keys and save them
       io.write('blunet: pairing')
