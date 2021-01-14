@@ -22,6 +22,7 @@ local blunet = {
   appendfenv = function (self,table,val) loadstring('getfenv(("").gsub).'..table..'[#getfenv(("").gsub).'..table..' + 1] = "'..val..'"')() end,
   
   setpairfreq = function (self,freq) pair_freq = freq end, --use this to creare unique pair freq to avoid confusing pcs when pairing
+  mkdir = function (self,dir) shell.run('mkdir '..dir) end,
   
   keygen = function (self,passkey) -- blunet:keygen('password')
     key = ''
@@ -58,10 +59,10 @@ local blunet = {
     end
   end,
   broacast = function (self,key,msg)
-    
+    --write to all saved slaves tables with msg and key
   end,
   send = function (self,key,slave_key,msg)
-    
+    --write to specific saved slaves tables with msg and key
   end
 }
 
