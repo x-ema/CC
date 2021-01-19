@@ -4,10 +4,13 @@ full = peripheral.wrap('right')
 north = 'north'
 south = 'south'
 
+for i = 1,16 do turtle.select(i) turtle.dropDown() end
+turtle.select(1)
 while true do
   repeat
     sleep(0.05)
   until #full.getAllStacks() > 0
+  full.condenseItems()
   full.pushItem(south,1)
   turtle.place()
   repeat
