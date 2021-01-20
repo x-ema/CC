@@ -1,15 +1,55 @@
 local peripherals = {
- --[[usage peripherals:mount(<periperal_type>,<var_name>)]]--
- --[[ex, peripherals:mount('monitor','mon')]]--
-  mount = function (self,p_type,name) 
+  mount = function (self,peripheral_name)
     for _,p in pairs(peripheral.getNames()) do
-      if peripheral.getType(p) == p_type then
-        self[name] = peripheral.wrap(p)
-      end
+      if peripheral.getType(p) == peripheral_name then return peripheral.wrap(p) break else return false break end
     end
   end
 }
 
+local map = {
+  auth_list = {'Sleetyy'},
+  sensor_x,sensor_y,sensor_z = 0,0,0,
+  map_x,map_y = 12000,12000,
+  offset_x,offset_y = 10,10,
+  margin = 10,
+  scale = 1/100,
+  colors = {
+    background = 0x000000,
+    foreground = 0xFFFFFF,
+    text = 0xFFFFFF
+  },
+  opacity = 0.5,
+  map_url = 'http://tekkit.craftersland.net:25800/up/world/world/',
+  players = {},
+  sensor = peripherals:mount('openperipheral_sensor')
+  setSensorCoords = function (self,x,y,z) self.sensor_x,self.sensor_y,self.sensor_z = x,y,z end,
+  updatePlayers = function (self)
+    self.players = {},
+    json_players = http.get(self.map_url).readAll():gsub('\n','')
+    search_start = 1
+    while true do
+      start,last = json_players:find('"name":"%a+"',search_start)
+      if start ~= nil and last ~= nil then
+        self.players[#self.players + 1] = sensor.getPlayerData(json_players:sub(start + 8,last - 1))
+        self.players[#self.players].position.x = self.players[#self.players].position.x + self.x_coord
+        self.players[#self.players].position.y = self.players[#self.players].position.y + self.y_coord
+        self.players[#self.players].position.z = self.players[#self.players].position.z + self.z_coord
+        search_start = last
+      else break
+      end
+    end
+    w
+  end
+}
+
+
+
+
+
+
+
+
+--[[
 local map = {
   x_coord = 0,
   y_coord = 0,
@@ -52,7 +92,7 @@ local map = {
   end,
 
   draw = function (self)
-    peripherals.glass.addBox(self.x_pos,self.y_pos,self.x_size * self.scale,self.y_size * self.scale,self.bg,self.opacity) --[[draw map bounding box]]--
+    peripherals.glass.addBox(self.x_pos,self.y_pos,self.x_size * self.scale,self.y_size * self.scale,self.bg,self.opacity) --draw map bounding box
     for i = 1,#self.players do
       peripherals.glass.addBox((self.players[i].position.x * -1 * self.scale) + ((self.x_size * self.scale) / 2) + self.x_pos,(self.players[i].position.z * -1 * self.scale) + ((self.y_size * self.scale) / 2) + self.y_pos,1,1,self.fg,self.opacity)
     end
@@ -65,7 +105,7 @@ local map = {
     peripherals.glass.addText(self.scale * self.x_size + self.margin,self.scale * self.y_size + self.margin,display_str,self.fg)
   end
 }
---[[GLASS PLUGIN STANDARD DEFINITIONS]]--
+--[[GLASS PLUGIN STANDARD DEFINITIONS
 local commands = {
   init = function (self)
     peripherals:mount('openperipheral_glassesbridge','glass')
@@ -78,7 +118,7 @@ local commands = {
     end
   }
 }
---[[GLASS PLUGIN STANDARD DEFINITIONS]]--
+--[[GLASS PLUGIN STANDARD DEFINITIONS
 while true do
   commands:init()
   map:updateCoords(4872,67,3592)
@@ -87,3 +127,4 @@ while true do
   map:draw()
   map:track('Sleetyy')
 end
+]]--
