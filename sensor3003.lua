@@ -8,8 +8,8 @@ args[1] = 4887
 args[2] = 6
 args[3] = 3572
 if not args[1] or not args[2] or not args[3] then error('usage sensor3003.lua <x> <y> <z>') end
-sen = peripheral.wrap('top')
-glass = peripheral.wrap('bottom')
+sen = peripheral.wrap('bottom')
+glass = peripheral.wrap('top')
 glass = glass.getUserSurface('Sleetyy')
 scale = 1
 
@@ -75,7 +75,6 @@ tab = {
     'mikewerf',
     'Joaspa075'
 }
-print(textutils.serialize(tab))
 while true do
   x = getPlayerData(tab)
   term.clear()
