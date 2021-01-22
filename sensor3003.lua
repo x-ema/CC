@@ -9,7 +9,7 @@ args[2] = 6
 args[3] = 3572
 if not args[1] or not args[2] or not args[3] then error('usage sensor3003.lua <x> <y> <z>') end
 sen = peripheral.wrap('top')
-glass = peripheral.wrap('back')
+glass = peripheral.wrap('bottom')
 glass = glass.getUserSurface('Sleetyy')
 scale = 1
 
