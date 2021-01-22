@@ -1,7 +1,16 @@
+term.clear()
+str = 'hello world'
+h,w = term.getSize()
+term.setCursorPos(h/2,(w/2)-#str)
+io.write(str)
 args = {...}
+args[1] = 4887
+args[2] = 6
+args[3] = 3572
 if not args[1] or not args[2] or not args[3] then error('usage sensor3003.lua <x> <y> <z>') end
 sen = peripheral.wrap('top')
 glass = peripheral.wrap('back')
+glass = glass.getUserSurface('Sleetyy')
 scale = 1
 
 function getInventory(name)
@@ -44,18 +53,31 @@ function getPlayerData(extra_players)
 end
 
 function writeToScreen(data)
-  maxwidth = 0
-  for _,info in pairs(data) do
-    if glass.getStringWidth(data) > maxwidth then maxwidth = glass.getStringWidth(data) end
-  end
+  maxwidth = 10000
   glass.addBox(1,1,maxwidth,#data*10 + 10,1,0.5)
   for _,info in pairs(data) do
-    glass.addText(5,_*10,info,0)
+    glass.addText(5,_*10,info,0xFF1100)
   end
 end
     
 while true do
-  x = getPlayerData({'Sleetyy'})
+  local tab = {
+    'Sleetyy',
+    'ashtrunks14',
+    'cunningham529',
+    'Dev2150',
+    'Discordant_Drake',
+    'Markulus22',
+    'N3gynka',
+    'Naddybo',
+    'Wickedartemis',
+    'Zilexon',
+    'Znk97',
+    'iim_wolf',
+    'mikewerf',
+    'Joaspa075'
+  }
+  x = getPlayerData(tab)
   term.clear()
   writeable_data = {}
   for _,z in pairs(x) do
