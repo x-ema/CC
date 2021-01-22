@@ -59,9 +59,7 @@ function writeToScreen(data)
     glass.addText(5,_*10,info,0xFF1100)
   end
 end
-    
-while true do
-  local tab = {
+tab = {
     'Sleetyy',
     'ashtrunks14',
     'cunningham529',
@@ -76,7 +74,9 @@ while true do
     'iim_wolf',
     'mikewerf',
     'Joaspa075'
-  }
+}
+print(textutils.serialize(tab))
+while true do
   x = getPlayerData(tab)
   term.clear()
   writeable_data = {}
