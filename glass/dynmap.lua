@@ -23,6 +23,7 @@ local map = {
   players = {},
   sensor = peripherals:mount('openperipheral_sensor')
   setSensorCoords = function (self,x,y,z) self.sensor_x,self.sensor_y,self.sensor_z = x,y,z end,
+  
   updatePlayers = function (self)
     self.players = {},
     json_players = http.get(self.map_url).readAll():gsub('\n','')
@@ -38,8 +39,7 @@ local map = {
       else break
       end
     end
-    w
-  end
+  end,
 }
 
 
