@@ -2,7 +2,7 @@ term.clear()
 str = 'hello world'
 h,w = term.getSize()
 term.setCursorPos(h/2,(w/2)-#str)
-io.write(str)
+write(str)
 args = {...}
 args[1] = 4887
 args[2] = 6
