@@ -60,15 +60,9 @@ end
  
  
 local file1=[[
---file autogenrated by lua2bin, by GopherAtl.
- 
---look-up table for decoding the base64
 local base64r=]]
  
 local file2=[[
- 
- 
---this function converts the encoded base64 back into binary
 local function _6to8(src)
   local out=""
   local bits=0
@@ -85,14 +79,11 @@ local function _6to8(src)
   end
   return out
 end
- 
 local code64="]]
  
  
  
 local file3=[["
- 
- 
 local srcBin=_6to8(code64)
 local func=loadstring(srcBin)
 func(...)]]
