@@ -42,13 +42,6 @@ local map = {
   end,
 }
 
-
-
-
-
-
-
-
 --[[
 local map = {
   x_coord = 0,
