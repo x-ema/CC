@@ -1,3 +1,5 @@
+-- not by me, this script is courtesy of MaHuJa
+
 -- From http://pastebin.com/gsFrNjbt linked from http://www.computercraft.info/forums2/index.php?/topic/8169-sha-256-in-pure-lua/
 
 --  
