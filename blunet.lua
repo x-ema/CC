@@ -14,6 +14,16 @@ master can use blunet:broadcast to send to all connected slaves
 ]]--
 
 local blunet = {
+  pair_freq = getfenv(('').gsub)['pair_freq'],
+  dir = 'paired',
+  
+  setPairFreq = function (self,pair_freq) self.pair_freq = getfenv(('').gsub)[pair_freq] end,
+  
+ 
+}
+
+
+local blunet_old = {
   pair_freq = 'blunet_pair',
   paired_dir = '/paired/',
   
@@ -24,13 +34,7 @@ local blunet = {
   setpairfreq = function (self,freq) pair_freq = freq end, --use this to creare unique pair freq to avoid confusing pcs when pairing
   mkdir = function (self,dir) shell.run('mkdir '..dir) end,
   
-  keygen = function (self,passkey) -- blunet:keygen('password')
-    key = ''
-    for i = 1,#passkey do
-      key = key ..((passkey:sub(i,i):byte() + os.getComputerID()) / #passkey)..'/'
-    end
-    return key
-  end,
+
   
   pair = function (self,master,key,time)
     if master then
@@ -68,21 +72,3 @@ local blunet = {
 
 
 blunet:keygen('password')
-
-
-
-
-
---[[
-blunet = {
-  pair = function (self,master)
-    if master then
-      key = read()
-      print(getfenv(('').gsub).key)
-    else
-      key = '1534243'
-      getfenv(('').gsub).key = '1234'
-    end
-  end
-}
-]]--
