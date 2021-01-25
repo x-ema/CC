@@ -76,7 +76,14 @@ tab = {
     'Joaspa075',
     'Vratko_1337',
     'VulcanBro',
-    'king_of_riots'
+    'king_of_riots',
+  'iTzMartiin',
+  'Julebakst420',
+  'WAP_99',
+  'TwIsTeD_cS',
+  'manticclaw22',
+  'CoffeShop420',
+  'falconpunch1880'
 }
 while true do
   x = getPlayerData(tab)
