@@ -29,6 +29,7 @@ local blunet = { --only supports one way connections atm (master to slaves)
   append = function (self,table,val) table[#table + 1] = val end,
   saveKey = function (self,key) if fs.exists(self.dir + key) then return true else f = fs.open(self.dir..'/'..key,'w') f.write(key) f.close() return true end end,
   readKeys = function (self) if #fs.list(self.dir) > 0 then return fs.list(self.dir)[1] else error('No devices paired') end end,
+  setDir = function (self,new_dir) if not fs.exists(new_dir) then fs.makeDir(new_dir) else self.dir = new_dir end
   
   
   pair = function (self,master,key,timeout)
