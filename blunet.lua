@@ -86,3 +86,5 @@ local blunet = { --only supports one way connections atm (master to slaves)
  }
 
 --concept code not yet bugtested
+  
+  print(blunet:keygen('password'))
