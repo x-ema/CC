@@ -60,7 +60,6 @@ function writeToScreen(data)
   end
 end
 tab = {
-    'Sleetyy',
     'ashtrunks14',
     'cunningham529',
     'Dev2150',
@@ -73,7 +72,10 @@ tab = {
     'Znk97',
     'iim_wolf',
     'mikewerf',
-    'Joaspa075'
+    'brunyman',
+    'Joaspa075',
+    'Vratko_1337',
+    'VulcanBro'
 }
 while true do
   x = getPlayerData(tab)
