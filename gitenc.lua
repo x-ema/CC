@@ -2,7 +2,7 @@ local cli_args = {...}
 if #cli_args == 4 then
   f = fs.open('git_file_tmp','w')
   f.write(http.get('https://raw.githubusercontent.com/'..cli_args[1]..'/'..cli_args[2]..'/master/'..cli_args[3]).readAll())
-  f.write()
+  f.close()
 else
   error('usage: gitenc <username> <branch> <path> <filename>')
 end
