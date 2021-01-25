@@ -13,6 +13,7 @@ master can then use blunet:send() to send directly to 1 or a few slaves
 master can use blunet:broadcast to send to all connected slaves
 ]]--
 
+if not fs.exists('sha256') then error('required lib sha256 not found') end
 os.loadAPI('sha256') --requires sha256 lib by MaHuJa
 
 
@@ -44,7 +45,7 @@ local blunet = { --only supports one way connections atm (master to slaves)
       for i = 2,#pair_freq do self:saveKey(pair_freq[i]) end
       print('Paired with '..tostring(#paire_freq - 1)..' devices')
     else
-      if self.pair_freq = {} then error('No masters pairing on this freq') end
+      if self.pair_freq == {} then error('No masters pairing on this freq') end
       saveKey(self.pair_freq[1])
       self:append(self.pair_Freq,self.key)
     end
@@ -75,7 +76,7 @@ local blunet = { --only supports one way connections atm (master to slaves)
           return global.data
         end
       elseif loc then
-        if loc.key = self.key and self.identifier ~= global.id then
+        if loc.key == self.key and self.identifier ~= global.id then
           self.identifier = global.id
           return loc.data
         end
@@ -87,4 +88,4 @@ local blunet = { --only supports one way connections atm (master to slaves)
 
 --concept code not yet bugtested
   
-  print(blunet:keygen('password'))
+  print(blunet:returnKey('password'))
