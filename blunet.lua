@@ -33,9 +33,10 @@ local blunet = { --only supports one way connections atm (master to slaves)
   setDir = function (self,new_dir) if not fs.exists(new_dir) then fs.makeDir(new_dir) else self.dir = new_dir end end,
   
   
-  pair = function (self,master,key,timeout)
-    if not pair_freq then error('You must specify a pair_Freq before pairing, use blunet:setPairFreq("<freq>") to pair.') end
-    if not key then error('You must specify a key for this PC before pairing, use blunet:keygen("<key>") to set a key') end
+  pair = function (self,master,timeout)
+    key = self.key
+    if not self.pair_freq then error('You must specify a pair_Freq before pairing, use blunet:setPairFreq("<freq>") to pair.') end
+    if not self.key then error('You must specify a key for this PC before pairing, use blunet:keygen("<key>") to set a key') end
     if master then
       pair_freq.key = {key} --solved 1 pairer at a time by using a user defined pair_freq which will hopefully never be the same
       term.clear()
@@ -43,7 +44,7 @@ local blunet = { --only supports one way connections atm (master to slaves)
       print('Press any key to stop pairing...')
       os.pullEvent('key')
       for i = 2,#pair_freq do self:saveKey(pair_freq[i]) end
-      print('Paired with '..tostring(#paire_freq - 1)..' devices')
+      print('Paired with '..tostring(#pair_freq - 1)..' devices')
     else
       if self.pair_freq == {} then error('No masters pairing on this freq') end
       saveKey(self.pair_freq[1])
