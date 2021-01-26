@@ -88,7 +88,8 @@ tab = {
   'Brxxkes',
   'Baldur_7',
   'Vorb01',
-  'Fr44nky'
+  'Fr44nky',
+  'masterobo222'
 }
 while true do
   x = getPlayerData(tab)
