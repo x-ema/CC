@@ -2,11 +2,15 @@ local track = {
   sen_pos = {x=4887,y=6,z=3572},
   glass = peripheral.wrap('top'),
   sen = peripheral.wrap('bottom'),
-  tracking = '',
+  tracking = 'Sleetyy',
   
   doTrack = function (self)
-    if tracking == '' then return false end
-    data = self.sen.getPlayerData(self.tracking)
+    sen_data = peripheral.call('bottom','getPlayerData',self.tracking)
+    print(sen_data.username)
+    print(sen_data.position.x)
+    print(sen_data.position.y)
+    print(sen_data.position.z)
+    
       if data then
         glass.clear()
         glass.addBox(10,10,100,20,0xFFFFFF,0.5)
@@ -22,7 +26,7 @@ local track = {
       end,
       function()
         sleep(2)
-        self:doTrack()
+        pcall(self:doTrack())
       end
     )
   end
