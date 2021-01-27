@@ -1,25 +1,38 @@
 local peripherals = {
   mount = function (self,peripheral_name)
     for _,p in pairs(peripheral.getNames()) do
-      if peripheral.getType(p) == peripheral_name then return peripheral.wrap(p) break else return false break end
+      if peripheral.getType(p) == peripheral_name then return peripheral.wrap(p) else return false end
     end
   end
 }
 
 local track = {
-  sen_pos = {x=4887,y=6,z=3572}
-  glass = peripherals:mount('openperipherals_glassesbridge')
-  sen = peripherals:mount('openperipherals_sensor')
-  tracking = ''
+  sen_pos = {x=4887,y=6,z=3572},
+  glass = peripheral.wrap('top'),
+  sen = peripheral.wrap('bottom'),
+  tracking = '',
   
   track = function (self)
     if self.tracking ~= '' then
       while true do
-        data = self.sen.getPlayerData(name)
-        print(data.position.x + self.sen_pos.x)
-        print(data.position.y + self.sen_pos.y)
-        print(data.position.z + self.sen_pos.z)
+        if self.tracking ~= '' then
+          data = self.sen.getPlayerData(self.tracking)
+          if ~= nil then
+            glass.clear()
+            glass.addBox(10,10,100,20,0xFFFFFF,0.5)
+            glass.addText(15,15,data.username..': x'..data.position.x..' y'..data.position.y..' z'..data.position.z,0xFF1100)
+          end
+          sleep(0.5)
+        else
+          sleep(0.000001)
+        end
       end
+    end
+  end,
+  cmd = function (self)
+    while true do
+      _,msg,usr = os.pullEvent('chat_command')
+      if usr == 'Sleetyy' and #msg > 1 then self.tracking = msg end
     end
   end
 }
