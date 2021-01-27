@@ -24,10 +24,10 @@ local track = {
         _,msg,usr = os.pullEvent('chat_command')
         if usr == 'Sleetyy' and #msg > 1 then self.tracking = msg end
       end,
-      function()
+      pcall(function()
         sleep(2)
-        pcall(self:doTrack())
-      end
+        self:doTrack()
+      end)
     )
   end
 }
