@@ -25,6 +25,7 @@ local track = {
         self:doTrack()
       end
     )
-  end,
-  
+  end
+}
+
 while true do track:track() end
