@@ -95,7 +95,8 @@ tab = {
   'fufelini',
   'Acrillx',
   'WH33LS7789',
-  'F1LTHYP3ASANT'
+  'F1LTHYP3ASANT',
+  'Duxi_69'
 }
 while true do
   x = getPlayerData(tab)
