@@ -1,8 +1,32 @@
-term.clear()
-str = 'hello world'
-h,w = term.getSize()
-term.setCursorPos(h/2,(w/2)-#str)
-write(str)
+local peripherals = {
+  mount = function (self,peripheral_name)
+    for _,p in pairs(peripheral.getNames()) do
+      if peripheral.getType(p) == peripheral_name then return peripheral.wrap(p) break else return false break end
+    end
+  end
+}
+
+local track = {
+  sen_pos = {x=4887,y=6,z=3572}
+  glass = peripherals:mount('openperipherals_glassesbridge')
+  sen = peripherals:mount('openperipherals_sensor')
+  tracking = ''
+  
+  track = function (self)
+    if self.tracking ~= '' then
+      while true do
+        data = self.sen.getPlayerData(name)
+        print(data.position.x + self.sen_pos.x)
+        print(data.position.y + self.sen_pos.y)
+        print(data.position.z + self.sen_pos.z)
+      end
+    end
+  end
+}
+
+track:track()
+
+--[[
 args = {...}
 args[1] = 4887
 args[2] = 6
@@ -17,7 +41,6 @@ function getInventory(name)
   print(textutils.serialize(sen.getPlayerData(name).inventory))
 end
 
---[[add regex's ability to find all matches in a string to lua]]--
 function findAll(str,pattern,repl)
   result = {}
   search_start = 1
@@ -38,7 +61,6 @@ function findAll(str,pattern,repl)
   end
 end
 
---[[list players on dynmap, players not on dynmap will have to be searched manually]]--
 function getPlayerData(extra_players)
   infolist = {}
   local dynmap_url = 'http://tekkit.craftersland.net:25800/up/world/world/'
@@ -110,3 +132,4 @@ while true do
   writeToScreen(writeable_data)
   sleep(1)
 end
+]]--
