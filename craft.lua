@@ -7,13 +7,12 @@ craft = function(name,qty)
   turtle.select(1)
   if rec[name] then
     for i = #rec[name],1,-1 do
-      ae.extractItem({id = rec[name][1],dmg = rec[name][2],qty = qty})
+      ae.extractItem({id = rec[name][1],dmg = rec[name][2],qty = qty},'up')
       turtle.transferTo(i)
     end
     turtle.select(4)
     turtle.craft()
     ae.extractItem(4,turtle.getItemCount(4),'up')
-    end
   end
 end
 
