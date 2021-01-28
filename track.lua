@@ -18,7 +18,7 @@ while true do
       if sha256.sha256(usr) == user then tracking = msg end
     end,
     function()
-      sleep(2)
+      sleep(0.5)
       data = peripheral.call('bottom','getPlayerData',tracking)
       if data then
         glass.clear()
