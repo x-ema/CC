@@ -1,12 +1,21 @@
+os.loadAPI('sha256')
+
 local sen_pos = {x=4887,y=6,z=3572}
-local glass = peripheral.call('top','getUserSurface','Sleetyy')
-local tracking = 'Sleetyy'
+local tracking = ''
+local user = '6acd7cbdda8356a0d0f6df82f0f52308786c6fbcfa1b14499e563bb34637fb79'
+
+valid = function (usr) if sha256.sha256(usr) == user then return true else return false end end
+
+for _,usr in pairs(peripheral.call('top','getUsers')) do
+  if valid(usr) then glass = peripheral.call('top',usr,'getUserSurface') end
+end
+if not glass then error(user..' not found') end
+
 while true do
   parallel.waitForAny(
     function()
       _,msg,usr = os.pullEvent('chat_command')
-      if usr == 'Sleetyy' then tracking = msg end
-      print(usr..' : '..msg)
+      if sha256.sha256(usr) == user then tracking = msg end
     end,
     function()
       sleep(2)
