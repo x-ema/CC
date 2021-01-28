@@ -3,6 +3,7 @@ os.loadAPI('sha256')
 local sen_pos = {x=4887,y=6,z=3572}
 local tracking = ''
 local user = '6acd7cbdda8356a0d0f6df82f0f52308786c6fbcfa1b14499e563bb34637fb79'
+local omit_cl_staff = {'brunyman','DragonSlayer','iim_wolf','eytixis','mikewerf'}
 
 valid = function (usr) if sha256.sha256(usr) == user then return true else return false end end
 
