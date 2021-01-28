@@ -7,7 +7,7 @@ local user = '6acd7cbdda8356a0d0f6df82f0f52308786c6fbcfa1b14499e563bb34637fb79'
 valid = function (usr) if sha256.sha256(usr) == user then return true else return false end end
 
 for _,usr in pairs(peripheral.call('top','getUsers')) do
-  if valid(usr) then glass = peripheral.call('top',usr,'getUserSurface') end
+  if valid(usr) then glass = peripheral.call('top','getUserSurface',usr) end
 end
 if not glass then error(user..' not found') end
 
