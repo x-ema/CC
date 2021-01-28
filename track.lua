@@ -26,7 +26,7 @@ while true do
         glass.addText(15,15,data.username..': x '..math.ceil(data.position.x+sen_pos.x)..' y '..math.ceil(data.position.y+sen_pos.y)..' z '..math.ceil(data.position.z+sen_pos.z),0xFF1100)
       else
         glass.clear()
-        glass.addBox(10,10,1000,25,0x000000,0.5)
+        glass.addBox(10,10,300,18,0x000000,0.5)
         glass.addText(15,15,'Player not available...',0xFF1100)
       end
     end
