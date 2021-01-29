@@ -93,25 +93,41 @@ function button(buttons)
         end
     end
 end
-]]--
-function help()
- print('mount - mount a peripheral by name instead of side')
- print('contains - check to see if a table contains a value')
+btn1={
+xpos=5;
+ypos=2;
+xsize=10;
+ysize=5;
+text="Say Hello!"
+color=colors.red;
+centerText=true;
+func=print;
+args={"HELLO!"};
+exit=false;
+}
+
+button = function ()
+  local x_size,y_size = term.getSize()
+  for _,button in pairs(buttons) do
+    if button.x_pos + button.x_size > x_size or button.y_pos + button.y_size > y_size then error('button '.._..' is too big for the display...') end
+    if #button.text > button.x_size then error('text on button '.._..' is too long for this button') end
+    if not button.color then button.color = colors.black end
+    for i = button.y_pos,button.y_size do
+      paintutils.drawLine(button.x_pos,i,button.x_size,i,button.color)
+    end
+    term.setCursorPos()
+  end
+end]]--
+listPeripherals = function () --[[Lists all connected peripherals]]--
+  for _,location in pairs(peripheral.getNames()) do
+    print(location..' : '..peripheral.getType(location))
+  end
 end
 
-function mount(peripheral_name)
- if peripheral_name == 'help' then print('usage "peripheral_name":mount(). ex pname = peripheral.wrap("monitor":mount())') end
- for _,perip in pairs(peripheral.getNames()) do
-   if peripheral.getType(perip) == peripheral_name then
-    return perip
-   end
- end
+mount = function (peripheral_type) --[[mounts the first connected peripheral that matches the name of peripheral_type, essentially its a copy of modern day peripheral.find]]--
+  for _,location in pairs(peripheral.getNames()) do
+    if peripheral.getType(location) == peripheral_type then return peripheral.wrap(location) end
+  end
+  return false
 end
 
-function contains(table,search)
- if table == 'help' then print('usage <table>:contains(<value>)') end
- for _,val in pairs(table) do
-  if val == search then return true end
- end
- return false
-end
