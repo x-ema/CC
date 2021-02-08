@@ -3,65 +3,72 @@ os.loadAPI('sha256')
 local sen_pos = {x=4887,y=6,z=3572}
 local user = '6acd7cbdda8356a0d0f6df82f0f52308786c6fbcfa1b14499e563bb34637fb79'
 local omit_cl_staff = {'brunyman','DragonSlayer','iim_wolf','eytixis','mikewerf'}
-
-local draw_inv = false
-local draw_coords = false
-local draw_minimap = false
-local last_inv = ''
-local last_track = ''
-
-
-mount = function (peripheral_type) --[[mounts the first connected peripheral that matches the name of peripheral_type, essentially its a copy of modern day peripheral.find]]--
+local refresh_rate = (1/60)
+local mount = function (peripheral_type)
   for _,location in pairs(peripheral.getNames()) do
     if peripheral.getType(location) == peripheral_type then return peripheral.wrap(location) end
   end
   return false
 end
 
-glass = mount('openperipheral_glassesbridge')
-sen = mount('openperipheral_sensor')
+local sen = mount('openperipheral_sensor')
+local glass = mount('openperipheral_glassesbridge')
+for _,usr in pairs(glass.getUsers()) do if sha256.sha256(usr) == usr then glass = glass.getUserSurace(usr) end end
+if not glass then os.reboot() end
 
-for _,usr in pairs(peripheral.call('top','getUsers')) do
-  if sha256.sha256(usr) == usr then glass = glass.getUserSurace(usr) end
-end
-if not glass then error(user..' not found') end
+local invsee = {
+  enabled = false,
+  player = ''
+}
+local track = {
+  enabled = false,
+  player = ''
+}
 
-invsee = function(player)
-  print('invsee '..player)
-end
-
-track = function(player)
-  print('coords of '..player)
-end
-
-minimap = function()
-  print('showing mini')
-end
-
-parallel.waitForAny(
-  function()
-    _,msg,usr = os.pullEvent('chat_command')
-    if sha256.sha256(usr) == user then
-      if msg:find('invsee ') then
-        last_inv = msg:sub(7,#msg)
-      elseif msg:find('track ') then
-        last_track = msg:sub(6,#msg)
-      elseif msg:find('minimap') then
-        minimap()
-      elseif msg == 'toggle invsee' then
-        if draw_inv == true then draw_inv = false else draw_inv = true end
-      elseif msg == 'toggle coords' then
-        if draw_coords == true then draw_coords = false else draw_coords = true end
-      elseif msg == 'toggle minimap' then
-        if draw_minimap == true then draw_minimap = false else draw_minimap = true end
+while true do
+  
+  parallel.waitForAny(
+    function() --listener for chat commands
+      _,msg,usr = os.pullEvent('chat_command')
+      if sha256.sha256(usr) == user then
+        if msg:find('toggle invsee') then --terrible cmd find if then statement
+          if invsee.enabled then invsee.enabled = false else invsee.enabled = true end
+        elseif msg:find('toggle tracker') then
+          if track.enabled then track.enabled = false else track.enabled = true end
+        elseif msg:find('track ') then
+          track.player = msg:sub(6,#msg)
+        elseif msg:find('invsee ') then
+          invsee.player = msg:sub(7,#msg)
+        end
+      end
+    end,
+    function() --tracker function
+      sleep(refresh_rate)
+      for _,usr in pairs(glass.getUsers()) do if sha256.sha256(usr) == usr then glass = glass.getUserSurace(usr) end end
+      glass.clear()
+      if track.enabled and track.player ~= '' then
+        local data = sen.getPlayerData(track.player)
+        if data then
+          glass.clear()
+          glass.addBox(10,10,300,18,0x000000,0.5)
+          glass.addText(15,15,data.username..': x '..math.ceil(data.position.x+sen_pos.x)..' y '..math.ceil(data.position.y+sen_pos.y)..' z '..math.ceil(data.position.z+sen_pos.z),0xFF1100)
+        else
+          glass.clear()
+          glass.addBox(10,10,300,18,0x000000,0.5)
+          glass.addText(15,15,'Player not available...',0xFF1100)
+        end
+      end
+    end,
+    function() --invsee function
+      sleep(refresh_rate)
+      if invsee.enabled and invsee.player ~= '' then
+        print('Saw the inventory of '..invsee.player)
       end
     end
-  end,
-  function()
-    sleep(0.25)
-    if draw_inv then invsee(last_inv) end
-    if draw_coords then track(last_track) end
-    if draw_minimap then minimap() end
-  end
-)
+  )
+end
 
+--1. start script with checking for user, if not the user present then exit for safety else grab their surface and continue
+--2. start the event loop
+      --wait x secs for data, if not data then refresh displays
+      
