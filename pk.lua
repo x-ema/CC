@@ -44,7 +44,6 @@ while true do
     end,
     function() --tracker function
       sleep(refresh_rate)
-      for _,usr in pairs(glass.getUsers()) do if sha256.sha256(usr) == usr then glass = glass.getUserSurace(usr) end end
       glass.clear()
       if track.enabled and track.player ~= '' then
         local data = sen.getPlayerData(track.player)
