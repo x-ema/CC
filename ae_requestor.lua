@@ -10,6 +10,10 @@ local chest = mount('container_chest')
 local ae = mount('me_interface')
 
 term.clear()
+w,h = term.getSize()
+local display = 'CC INTERFACE'
+term.setCursorPos(w/2-#display/2,h/2)
+write(display)
 while true do
   chest.condenseItems()
   for _,item in pairs(chest.getAllStacks()) do
