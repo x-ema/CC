@@ -7,7 +7,7 @@ local mount = function (peripheral_type) --[[mounts the first connected peripher
 end
 
 local chest = mount('container_chest')
-local ae = mount('me_interface')
+local ae = mount('appeng_me_tilecolorlesscable')
 
 term.clear()
 w,h = term.getSize()
