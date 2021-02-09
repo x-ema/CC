@@ -131,3 +131,5 @@ mount = function (peripheral_type) --[[mounts the first connected peripheral tha
   return false
 end
 
+yeild = function () os.queueEvent("fakeEvent"); os.pullEvent(); end
+
