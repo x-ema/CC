@@ -4,6 +4,7 @@ w,h = term.getSize()
 local display = 'CC ECHEST SCANNER'
 term.setCursorPos(w/2-#display/2,h/2)
 write(display)
+term.setCursorPos(1,1)
 for i = 0,4095 do
 	chest.setFrequency(i)
 	all_items = chest.getAllStacks()
