@@ -5,6 +5,7 @@ local mount = function (peripheral_type) --[[mounts the first connected peripher
   end
   return false
 end
+local yeild = function () os.queueEvent("fakeEvent"); os.pullEvent(); end
 
 local chest = mount('container_chest')
 local ae = mount('appeng_me_tilecolorlesscable')
@@ -23,5 +24,5 @@ while true do
       ae.extractItem({id=item.id,dmg=item.dmg,qty=ae.countOfItemType(item.id,item.qty)},direction)
     end
   end
-  sleep(0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001)
+  yeild()
 end
