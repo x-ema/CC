@@ -1,1 +1,0 @@
---[[Encode strings as base64]]--
