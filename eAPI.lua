@@ -1,7 +1,19 @@
 --[[
 --essentialsAPI, From:Slitty ;3 (aka Slit)
 
+centerText = function (line,text,color)
+    if not color then color = colors.white end
+    local w,_ = term.getSize()
+    term.setCursorPos(w/2-#text/2,line)
+    term.setTextColor(color)
+    write(text)
+    term.setTextColor(colors.white)
+end
 
+progressBar = function (x,y,xSize,ySize,text,percent)
+    local w,h = term.getSize
+    
+end
 function centerText(line,text,color) --centerText(1,colors.white,"Hello World")
     local ox,oy = term.getCursorPos()
     local x,y = term.getSize()
