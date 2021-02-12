@@ -1,0 +1,53 @@
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT]  ---- Help -- Page 1/5 ----
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT] Essentials: Plugin Help: /help essentials
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT] Lift: Plugin Help: /help lift
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT] EssentialsSpawn: Plugin Help: /help essentialsspawn
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT] Random Spawn: Plugin Help: /help random spawn
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT] /back: Teleports you to your location prior to tp/spawn/warp.
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT] /balance: States the current balance of a player.
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT] /balancetop: Gets the top balance values.
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT] /clearinventory: Clear all items in your inventory.
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT] /delhome: Removes a home.
+2021-02-12 11:26:28 [INFO] [Minecraft-Client] [CHAT] Type /help 2 to read the next page.
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT]  ---- Help -- Page 2/5 ----
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT] /enderchest: Lets you see inside an enderchest.
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT] /feed: Satisfy the hunger.
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT] /fly: Take off, and soar!
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT] /hat: Get some cool new headgear.
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT] /heal: Heals you or the given player.
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT] /help: Views a list of available commands.
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT] /home: Teleport to your home.
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT] /ignore: Ignore or unignore other players.
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT] /info: Shows information set by the server owner.
+2021-02-12 11:26:30 [INFO] [Minecraft-Client] [CHAT] Type /help 3 to read the next page.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT]  ---- Help -- Page 3/5 ----
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] /invsee: See the inventory of other players.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] /kit: Obtains the specified kit or views all available kits.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] /list: List all online players.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] /mail: Manages inter-player, intra-server mail.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] /me: Describes an action in the context of the player.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] /motd: Views the Message Of The Day.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] /near: Lists the players near by or around a player.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] /nick: Change your nickname or that of another player.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] /pay: Pays another player from your balance.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] Type /help 4 to read the next page.
+2021-02-12 11:26:31 [INFO] [Minecraft-Client] [CHAT] ----------------------------------------------------- -<Info>- Check out our free server rewards! Do: /rewards for details. -----------------------------------------------------
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT]  ---- Help -- Page 4/5 ----
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT] /ptime: Adjust player's client time. Add @ prefix to fix.
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT] /realname: Displays the username of a user based on nick.
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT] /recipe: Displays how to craft items.
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT] /rules: Views the server rules.
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT] /seen: Shows the last logout time of a player.
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT] /sethome: Set your home to your current location.
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT] /tpa: Request to teleport to the specified player.
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT] /tpaccept: Accepts a teleport request.
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT] /tpahere: Request that the specified player teleport to you.
+2021-02-12 11:26:32 [INFO] [Minecraft-Client] [CHAT] Type /help 5 to read the next page.
+2021-02-12 11:26:34 [INFO] [ForgeModLoader] [Modstats] Stat wasn't reported 'Read timed out'
+2021-02-12 11:26:34 [INFO] [Minecraft-Client] [CHAT]  ---- Help -- Page 5/5 ----
+2021-02-12 11:26:34 [INFO] [Minecraft-Client] [CHAT] /tpdeny: Reject a teleport request.
+2021-02-12 11:26:34 [INFO] [Minecraft-Client] [CHAT] /tptoggle: Blocks all forms of teleportation.
+2021-02-12 11:26:34 [INFO] [Minecraft-Client] [CHAT] /workbench: Opens up a workbench.
+2021-02-12 11:26:34 [INFO] [Minecraft-Client] [CHAT] /lift: Scans a lift.
+2021-02-12 11:26:34 [INFO] [Minecraft-Client] [CHAT] /spawn: Teleport to the spawnpoint.
+2021-02-12 11:26:34 [INFO] [Minecraft-Client] [CHAT] /rs info: Shows the Random Spawn settings for this world.
