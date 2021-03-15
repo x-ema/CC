@@ -1,14 +1,13 @@
-local items = {
-    {id=1,dmg=0} --stone
-}
- 
-local spawnItem = function (id,dmg)
-    turtle.place(string.char(194,167).."1[Buy]\n"..id.."\n"..dmg.."\n$0.01")
+id = '1828'
+dmg = '0'
+qty = '1'
+str = {string.char(194,167).."1[Buy]",qty,id..":"..dmg,"$0.01"}
+for _,x in pairs(str) do
+   peripheral.call('front','setLine',_,x) 
 end
- 
-for _,item in pairs(items) do
-    spawnItem(item.id,item.dmg)
-    print('Press any key to continue...')
-    read()
-    turtle.dig()
+
+read()
+
+for i=1,4 do
+   peripheral.call('front','setLine',i,'.') 
 end
