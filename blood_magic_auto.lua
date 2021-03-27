@@ -11,9 +11,9 @@ in_side = 'WEST'
 out_side = 'EAST'
 altar = peripheral.wrap('top')
 
-function is_item()
+function get_item()
   if #altar.getAllStacks() > 0 then
-    return true
+    return altar.getStackInSlot(1).id
   else
     return false
   end
@@ -21,19 +21,22 @@ end
 
 
 while true do
-  if is_item() then
-    item = altar.getStackInSlot(1).id
-    waiting = true
-    while waiting do
-      if item ~= altar.getStackInSlot(1).id then
-        altar.pushItem(out_slot,1)
-      else
-        sleep(0.5)
+  if get_item() ~= false then
+    item = get_item()
+    if item then
+      waiting = true
+      while waiting do
+        if item ~= altar.getStackInSlot(1).id then
+          altar.pushItem(out_side,1)
+          waiting = false
+          sleep(0.5)
+        else
+          sleep(0.5)
+        end
       end
     end
   else
-    altar.pullItem(in_slot,1,1)
+    altar.pullItem(in_side,1,1)
     sleep(0.5)
   end
-  sleep(0.5)
 end
