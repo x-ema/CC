@@ -1,6 +1,11 @@
 in_side = 'WEST'
 out_side = 'EAST'
 altar = peripheral.wrap('top')
+term.clear()
+w,h = term.getSize()
+local display = 'CC AUTO ALTAR'
+term.setCursorPos(w/2-#display/2,h/2)
+write(display)
 while true do
   item = altar.getStackInSlot(1)
   if item then
