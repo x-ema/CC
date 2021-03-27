@@ -12,10 +12,10 @@ out_side = 'EAST'
 altar = peripheral.wrap('top')
 
 function is_item()
-  if altar.getAllStacks() == {} then
-    return false
-  else
+  if #altar.getAllStacks() > 0 then
     return true
+  else
+    return false
   end
 end
 
