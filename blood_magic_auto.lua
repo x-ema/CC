@@ -12,14 +12,10 @@ out_side = 'EAST'
 altar = peripheral.wrap('top')
 
 function is_item()
-  if pcall(
-    function()
-      altar.getStackInSlot(1).id
-    end
-  ) then
-    return true
-  else
+  if altar.getAllStacks() == {} then
     return false
+  else
+    return true
   end
 end
 
