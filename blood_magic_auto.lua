@@ -1,3 +1,4 @@
+disc = 'Get the fuck out of my code retard'
 
 term.clear()
 w,h = term.getSize()
@@ -10,22 +11,33 @@ in_side = 'WEST'
 out_side = 'EAST'
 altar = peripheral.wrap('top')
 
-
+function is_item()
+  if pcall(
+    function()
+      altar.getStackInSlot(1).id
+    end
+  ) then
+    return true
+  else
+    return false
+  end
+end
 
 
 while true do
-  item_id = altar.getStackInSlot(1).id
-  if item_id ~= "" then
+  if is_item() then
+    item = altar.getStackInSlot(1).id
     waiting = true
     while waiting do
-      if item_id == altar.getStackInSlot(1).id then
-        altar.pushItem(out_side,1)
+      if item ~= altar.getStackInSlot(1).id then
+        altar.pushItem(out_slot,1)
       else
         sleep(0.5)
       end
     end
   else
-    altar.pullItem(in_side,1,1)
+    altar.pullItem(in_slot,1,1)
     sleep(0.5)
   end
+  sleep(0.5)
 end
